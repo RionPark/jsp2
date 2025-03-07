@@ -3,9 +3,12 @@ import java.util.Map;
 
 public class Test {
 
-	String sql ="select UI_NUM, UI_NAME, UI_AGE, UI_ID, \r\n"
-			+ "UI_PWD, UI_PHONE, UI_ADDRESS, UI_TRANS\r\n"
-			+ "from USER_INFO"
+	String sql ="update PHONE_INFO\r\n"
+			+ "set PI_NAME='갤럭시S11',\r\n"
+			+ "PI_PRICE=500000,\r\n"
+			+ "PI_RELEASE='20181210',\r\n"
+			+ "PI_VENDOR='삼성전자'\r\n"
+			+ "where PI_NUM=1";
 	public static void main(String[] args) {
 		Map<String,String> map = new HashMap<>();
 		
