@@ -59,7 +59,7 @@ if(users.size()==0){
 %>
 	<tr>
 		<td><%=user.get("uiNum")%></td>
-		<td><%=user.get("uiName")%></td>
+		<td><a href="/user/view.jsp?uiNum=<%=user.get("uiNum")%>"><%=user.get("uiName")%></a></td>
 		<td><%=user.get("uiId")%></td>
 		<td><%=user.get("uiAge")%></td>
 		<td><%="1".equals(user.get("uiTrans"))?"남":"여"%></td>

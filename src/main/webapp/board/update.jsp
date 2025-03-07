@@ -1,5 +1,5 @@
-<%@page import="java.util.HashMap"%>
 <%@page import="java.util.Map"%>
+<%@page import="java.util.HashMap"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.PreparedStatement"%>
 <%@page import="java.sql.DriverManager"%>
@@ -10,34 +10,33 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>상세화면</title>
+<title>게시물 수정</title>
 </head>
 <body>
+<h3>게시물 수정</h3>
 <%
 String biNum = request.getParameter("biNum");
 Class.forName("com.mysql.cj.jdbc.Driver");
 String url = "jdbc:mysql://localhost:3306/ezen";
-Connection con = DriverManager.getConnection(url, "root", "r1r2r3");
-String sql = "SELECT BI_NUM, BI_TITLE, BI_WRITER, BI_CONTENT FROM BOARD_INFO";
-sql += " WHERE BI_NUM=?";
+Connection con = DriverManager.getConnection(url,"root","r1r2r3");
+String sql = "SELECT BI_NUM, BI_TITLE, BI_CONTENT, BI_WRITER";
+sql += " FROM BOARD_INFO WHERE BI_NUM=?";
 PreparedStatement ps = con.prepareStatement(sql);
-ps.setString(1,biNum);
+ps.setString(1, biNum);
 ResultSet rs = ps.executeQuery();
-Map<String,String> board = new HashMap<>();
-if(rs.next()){
-	board.put("biNum",rs.getString("BI_NUM"));
-	board.put("biTitle",rs.getString("BI_TITLE"));
-	board.put("biWriter",rs.getString("BI_WRITER"));
-	board.put("biContent",rs.getString("BI_CONTENT"));
-}
-if(board.isEmpty()){
+if(!rs.next()){
 %>
-	해당 게시물은 이미 삭제되었습니다.<br>
-	<a href="/board/list.jsp">돌아가기</a>
+	이미 삭제된 게시물입니다.<br>
+	<a href="/board/list.jsp">게시판</a>
 <%
 }else{
+	Map<String,String> board = new HashMap<>();
+	board.put("biNum", rs.getString("BI_NUM"));
+	board.put("biTitle", rs.getString("BI_TITLE"));
+	board.put("biContent", rs.getString("BI_CONTENT"));
+	board.put("biWriter", rs.getString("BI_WRITER"));
 %>
-<form method="GET" action="/board/delete.jsp">
+<form method="GET" action="/board/update-ok.jsp">
 	<input type="hidden" name="biNum" value="<%=board.get("biNum")%>">
 	<table border="1">
 		<tr>
@@ -46,19 +45,19 @@ if(board.isEmpty()){
 		</tr>
 		<tr>
 			<th>제목</th>
-			<td><%=board.get("biTitle")%></td>
+			<td><input type="text" name="biTitle" value="<%=board.get("biTitle")%>"></td>
 		</tr>
 		<tr>
 			<th>작성자</th>
-			<td><%=board.get("biWriter")%></td>
+			<td><input type="text" name="biWriter" value="<%=board.get("biWriter")%>"></td>
 		</tr>
 		<tr>
 			<th>내용</th>
-			<td><%=board.get("biContent")%></td>
+			<td><textarea name="biContent"><%=board.get("biContent")%></textarea></td>
 		</tr>
 		<tr>
 			<th colspan="2">
-				<a href="/board/update.jsp?biNum=<%=board.get("biNum")%>"><button type="button">수정</button></a> <button>삭제</button>
+				<button>수정</button>
 			</th>
 		</tr>
 	</table>
