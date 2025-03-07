@@ -37,7 +37,7 @@ if(result==1){
 <script>
 	alert('이미 삭제된 상품입니다.');
 	location.href='/phone/list.jsp?piNum=<%=piNum%>';
-	</script>
+</script>
 <%
 }
 %>
