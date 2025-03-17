@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="UserMapper">
+	<select id="selectUsers" resultType="com.web.dto.UserDTO">
+		select UI_NUM, UI_NAME, UI_AGE, UI_ID, 
+		UI_PWD, UI_PHONE, UI_ADDRESS, UI_TRANS
+		from USER_INFO
+	</select>
+	
+	<select id="selectUser" resultType="com.web.dto.UserDTO">
+		select UI_NUM, UI_NAME, UI_AGE, UI_ID, 
+		UI_PWD, UI_PHONE, UI_ADDRESS, UI_TRANS
+		from USER_INFO
+		WHERE UI_NUM=#{uiNum}
+	</select>
+	
+	<select id="selectUserByUiId" resultType="com.web.dto.UserDTO">
+		select UI_NUM, UI_NAME, UI_AGE, UI_ID, 
+		UI_PWD, UI_PHONE, UI_ADDRESS, UI_TRANS
+		from USER_INFO
+		WHERE UI_ID=#{uiId}
+	</select>
+	<insert id="insertUser">
+		insert into USER_INFO(UI_NAME, UI_AGE, UI_ID, UI_PWD,
+		UI_PHONE, UI_ADDRESS, UI_TRANS)
+		VALUES(#{uiName}, #{uiAge}, #{uiId}, #{uiPwd}, 
+		#{uiPhone}, #{uiAddress}, #{uiTrans})
+	</insert>
+	<update id="updateUser">
+		update USER_INFO
+		set UI_NAME=#{uiName},
+		UI_AGE=#{uiAge},
+		UI_PWD=#{uiPwd},
+		UI_PHONE=#{uiPhone},
+		UI_ADDRESS=#{uiAddress},
+		UI_TRANS=#{uiTrans}
+		where UI_NUM=#{uiNum}
+	</update>
+	<delete id="deleteUser">
+		delete from USER_INFO where UI_NUM=#{uiNum}
+	</delete>
+</mapper>

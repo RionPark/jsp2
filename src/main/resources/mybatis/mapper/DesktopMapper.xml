@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="DesktopMapper">
+	<select id="selectDesktops" resultType="com.web.dto.DesktopDTO">
+		select DI_NUM,DI_NAME,
+		DI.CI_NUM, DI_RAM,
+		DI_SSD, DI_DESC,CI.CI_NAME
+		from DESKTOP_INFO DI
+		inner
+		join CPU_INFO CI
+		on DI.CI_NUM = CI.CI_NUM
+	</select>
+	<select id="selectDesktop" resultType="com.web.dto.DesktopDTO">
+		select DI_NUM,DI_NAME,
+		DI.CI_NUM, DI_RAM,
+		DI_SSD, DI_DESC,CI.CI_NAME
+		from DESKTOP_INFO DI
+		inner
+		join CPU_INFO CI
+		on DI.CI_NUM = CI.CI_NUM
+		where DI_NUM=#{diNum}
+	</select>
+	<insert id="insertDesktop">
+		insert into DESKTOP_INFO(DI_NAME, CI_NUM, DI_RAM, DI_SSD,
+		DI_DESC)
+		VALUES(#{diName},#{ciNum},#{diRam},#{diSsd},#{diDesc})
+	</insert>
+	<update id="updateDesktop">
+		update DESKTOP_INFO
+		set DI_NAME=#{diName},
+		CI_NUM=#{ciNum},
+		DI_RAM=#{diRam},
+		DI_SSD=#{diSsd},
+		DI_DESC=#{diDesc}
+		where DI_NUM=#{diNum}
+	</update>
+	<delete id="deleteDesktop">
+		delete from DESKTOP_INFO where DI_NUM=#{diNum}
+	</delete>
+</mapper>
