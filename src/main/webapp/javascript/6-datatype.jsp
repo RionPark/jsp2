@@ -41,6 +41,12 @@
  var func = function(){
 	 alert(1);
  }
+ function test(){
+	 
+ }
+ var test1 = function(){
+	 
+ }
  
  </script>
 </body>

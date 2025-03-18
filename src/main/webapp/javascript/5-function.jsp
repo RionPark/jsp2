@@ -8,10 +8,11 @@
 </head>
 <body>
 <script>
-test();
+var a = 1;
 </script>
 
 <script>
+alert(a);
 test();
 function test(){
 	alert(1);

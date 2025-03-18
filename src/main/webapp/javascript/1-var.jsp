@@ -18,5 +18,6 @@
 	let a = 1; // number 1
 	alert(i+a);
 </script>
+alert(1);
 </body>
 </html>

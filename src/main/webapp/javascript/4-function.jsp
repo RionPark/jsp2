@@ -9,22 +9,24 @@
 <body>
 
 <script>
-	/*function test(){
+	function test(){
 		alert(1);
 	}
 	
-	var i = test();
-	alert(i);*/
+	var i = test(); //undfined
+	alert(i); //undifned
 
-	/*test1();
+	test1(); // alert(2);
 	function test1(){
 		alert(2);
-	}*/
-	
+	}
+	// javascript overloading이 없음!!
 	function add(a){
 		alert(a);
 	}
+	//javascript의 function의 parameter는 option!
 	function add(a,b){
+		alert(a); //undefined
 		alert(1);
 	}
 	add();
