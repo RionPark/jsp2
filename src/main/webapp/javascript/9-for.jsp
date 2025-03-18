@@ -10,13 +10,13 @@
 <script>
 var arr = ['홍길동','김길동','이길동'];
 
-document.write('for문<br>')
+document.write('for문<br>');
 for(var i=0;i<arr.length;i++){
 	var name = arr[i];
 	document.write(name + '<br>');
 }
 
-document.write('for-in<br>')
+document.write('for-in<br>');
 for(var idx in arr){
 	var name = arr[idx];
 	document.write(name + '<br>');
