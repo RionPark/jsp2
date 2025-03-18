@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="CourseMapper">
+	<select id="selectCourses" resultType="com.web.dto.CourseDTO">
+		select CI.* ,
+		IFNULL(MSC.CNT,0) as cnt
+		from COURSE_INFO CI
+		left OUTER join (select CI_NUM,COUNT(*) as CNT from MAP_SI_CI
+		group by CI_NUM) MSC
+		on CI.CI_NUM = MSC.CI_NUM
+	</select>
+	<select id="selectCourse" resultType="com.web.dto.CourseDTO">
+		select CI.* ,
+		IFNULL(MSC.CNT,0) as cnt
+		from COURSE_INFO CI
+		left OUTER join (select CI_NUM,COUNT(*) as CNT from MAP_SI_CI
+		group by CI_NUM) MSC
+		on CI.CI_NUM = MSC.CI_NUM
+		WHERE CI.CI_NUM = #{ciNum}
+	</select>
+	<insert id="insertCourse">
+		insert into COURSE_INFO(CI_NAME, CI_MAX)
+		VALUES(#{ciName},#{ciMax})
+	</insert>
+	<update id="updateCourse">
+		UPDATE COURSE_INFO
+		SET CI_NAME = #{ciName},
+		CI_MAX = #{ciMax}
+		WHERE CI_NUM = #{ciNum}
+	</update>
+	<delete id="deleteCourse">
+		DELETE FROM COURSE_INFO WHERE CI_NUM=#{ciNum}
+	</delete>
+</mapper>

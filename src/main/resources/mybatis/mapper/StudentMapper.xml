@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="StudentMapper">
+	<select id="selectStudents" resultType="com.web.dto.StudentDTO">
+		select SI.* ,
+		IFNULL(MSC.CNT,0) as cnt
+		from STUDENT_INFO SI
+		left OUTER join (select SI_NUM,COUNT(*) as CNT from MAP_SI_CI
+		group by SI_NUM) MSC
+		on SI.SI_NUM = MSC.SI_NUM
+	</select>
+	<select id="selectStudent" resultType="com.web.dto.StudentDTO">
+		select SI.* ,
+		IFNULL(MSC.CNT,0) as cnt
+		from STUDENT_INFO SI
+		left OUTER join (select SI_NUM,COUNT(*) as CNT from MAP_SI_CI
+		group by SI_NUM) MSC
+		on SI.SI_NUM = MSC.SI_NUM
+		WHERE SI.SI_NUM = #{siNum}
+	</select>
+	<insert id="insertStudent">
+		insert into STUDENT_INFO(SI_NAME, SI_ADDRESS)
+		VALUES(#{siName},#{siAddress})
+	</insert>
+	<update id="updateStudent">
+		UPDATE STUDENT_INFO
+		SET SI_NAME = #{siName},
+		SI_ADDRESS = #{siAddress}
+		WHERE SI_NUM = #{siNum}
+	</update>
+	<delete id="deleteStudent">
+		DELETE FROM STUDENT_INFO WHERE SI_NUM=#{siNum}
+	</delete>
+</mapper>
