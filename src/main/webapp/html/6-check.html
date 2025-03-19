@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<script>
+function allCheck(obj){
+	var chks = document.querySelectorAll('input[name=chk][type=checkbox]');
+	for(var i=0;i<chks.length;i++){
+		var chk = chks[i];
+		chk.checked = obj.checked;
+	}
+}
+</script>
+<table border="1">
+	<tr>
+		<th><input type="checkbox" id="allChk" onchange="allCheck(this)"></th>
+		<th>제목</th>
+	</tr>
+	<tr>
+		<td><input type="checkbox" name="chk"></td>
+		<td>블라블라블라1~~</td>
+	</tr>
+	<tr>
+		<td><input type="checkbox" name="chk"></td>
+		<td>블라블라블라2~~</td>
+	</tr> 
+	<tr>
+		<td><input type="checkbox" name="chk"></td>
+		<td>블라블라블라3~~</td>
+	</tr>
+	<tr>
+		<td><input type="checkbox" name="chk"></td>
+		<td>블라블라블라4~~</td>
+	</tr>
+	<tr>
+		<td><input type="checkbox" name="chk"></td>
+		<td>블라블라블라5~~</td>
+	</tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+#div1{
+	display:none
+}
+</style>
+</head>
+<body>
+<div id="div1">안녕</div>
+<button onclick="showDiv()">클릭</button>
+<script>
+function showDiv(){
+	var div1 = document.querySelector('#div1');
+	if(div1.style.display=='block'){
+		div1.style.display = 'none';
+	}else{
+		div1.style.display = 'block';
+	}
+}
+</script>
+</body>
+</html>

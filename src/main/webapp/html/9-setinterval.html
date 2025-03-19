@@ -1,0 +1,19 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<!--  9-setinterval.html  -->
+<div id="clock"></div>
+<script>
+function setDate(){
+	var date = new Date();
+	document.querySelector('#clock').innerHTML = date;
+}
+setInterval(setDate, 1000);
+</script>
+</body>
+</html>

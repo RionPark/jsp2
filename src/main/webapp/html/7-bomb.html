@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+td {
+	text-align: center;
+	font-weight: bold;
+}
+
+td:hover {
+	cursor: pointer;
+	text-decoration: underline;
+	color: blue;
+}
+</style>
+</head>
+<body>
+	<div id="game" style="display:none">
+		<table border="1">
+			<tbody id="tBody"></tbody>
+		</table>
+	</div>
+	
+	<div id="start">
+		<input type="text" id="max" value="4">
+		<button onclick="startGame()">게임시작</button>
+	</div>
+	
+	<script>
+		const game = document.querySelector('#game');
+		const start = document.querySelector('#start');
+		var rNum = 0;
+		function startGame() {
+			game.style.display='block';
+			start.style.display='none';
+			var max = parseInt(document.querySelector('#max').value);
+
+			rNum = Math.floor(Math.random() * (max*max)) + 1;
+			var cnt = 1;
+			var html = '';
+			for (var i = 1; i <= max; i++) {
+				html += '<tr>';
+				for (var j = 1; j <= max; j++) {
+					html += '<td onclick="findBomb(this)">' + (cnt++) + '</td>';
+				}
+				html += '</tr>';
+			}
+			document.querySelector('#tBody').innerHTML = html;
+		}
+		
+		function findBomb(obj){
+			const checkNum = parseInt(obj.innerText);
+			if(checkNum === rNum){
+				alert('폭탄을 찾았습니다. 게임을 종료합니다.');
+				location.reload();
+			}else{
+				obj.innerText = 'X';
+			}
+		}
+	</script>
+</body>
+</html>

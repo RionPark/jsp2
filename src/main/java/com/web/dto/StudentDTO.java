@@ -1,5 +1,7 @@
 package com.web.dto;
 
+import java.util.List;
+
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -12,4 +14,5 @@ public class StudentDTO {
 	private String siName;
 	private String siAddress;
 	private int cnt;
+	private List<CourseDTO> courses;
 }
