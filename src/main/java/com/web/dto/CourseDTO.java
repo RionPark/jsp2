@@ -12,4 +12,5 @@ public class CourseDTO {
 	private String ciName;
 	private int ciMax;
 	private int cnt;
+	private int siNum;
 }

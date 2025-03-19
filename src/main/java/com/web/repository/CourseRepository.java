@@ -15,6 +15,12 @@ public class CourseRepository {
 		}
 	}
 
+	public List<CourseDTO> selectCoursesBySiNum(int siNum) {
+		try (SqlSession session = CommonFactory.getSSF().openSession()) {
+			return session.selectList("CourseMapper.selectCoursesBySiNum", siNum);
+		}
+	}
+	
 	public CourseDTO selectCourse(int ciNum) {
 		try (SqlSession session = CommonFactory.getSSF().openSession()) {
 			return session.selectOne("CourseMapper.selectCourse", ciNum);

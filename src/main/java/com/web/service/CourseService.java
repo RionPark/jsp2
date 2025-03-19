@@ -12,6 +12,10 @@ public class CourseService {
 	public List<CourseDTO> getCourses(CourseDTO course){
 		return courseRepo.selectCourses(course);
 	}
+
+	public List<CourseDTO> getCoursesBySiNum(int siNum) {
+		return courseRepo.selectCoursesBySiNum(siNum);
+	}
 	public CourseDTO getCourse(int ciNum){
 		return courseRepo.selectCourse(ciNum);
 	}

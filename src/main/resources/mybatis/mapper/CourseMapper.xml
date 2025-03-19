@@ -11,6 +11,13 @@
 		group by CI_NUM) MSC
 		on CI.CI_NUM = MSC.CI_NUM
 	</select>
+	<select id="selectCoursesBySiNum" resultType="com.web.dto.CourseDTO">
+		select CI.* , MSC.SI_NUM
+		from COURSE_INFO CI
+		left OUTER join (select CI_NUM,SI_NUM  from MAP_SI_CI
+		where SI_NUM=#{siNum}) MSC
+		on CI.CI_NUM = MSC.CI_NUM
+	</select>
 	<select id="selectCourse" resultType="com.web.dto.CourseDTO">
 		select CI.* ,
 		IFNULL(MSC.CNT,0) as cnt
