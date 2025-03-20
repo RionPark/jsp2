@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- MapSiCiMapper.xml -->
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="MapSiCiMapper">
+	<insert id="insertMapSiCi">
+		INSERT INTO MAP_SI_CI
+		VALUES(#{siNum},#{ciNum})
+	</insert>
+	<delete id="deleteMapSiCi">
+		DELETE FROM MAP_SI_CI
+		<where>
+			<if test='siNum != null and siNum != 0'>
+				AND SI_NUM = #{siNum}
+			</if>
+			<if test='ciNum != null and ciNum != 0'>
+				AND CI_NUM = #{ciNum}
+			</if>
+		</where>
+	</delete>
+</mapper>

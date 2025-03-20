@@ -1,6 +1,7 @@
 package com.web.servlet;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -39,8 +40,14 @@ public class StudentServlet extends HttpServlet {
 
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		String cmd = CommonCMD.getCmd(request);
+		if("delete".equals(cmd)) {
+			int siNum = Integer.parseInt(request.getParameter("siNum"));
+			courseService.updateMapSiCi(siNum, new ArrayList<>());
+			int result = studentService.removeStudent(siNum);
+			
+			System.out.println("삭제 갯수 " +result);
+		}
 	}
 
 }
