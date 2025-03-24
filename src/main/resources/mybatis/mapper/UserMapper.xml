@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="UserMapper">
+	
+	<select id="selectUsers" resultType="com.board2.dto.UserDTO">
+		SELECT UI_NUM ,
+               UI_NAME ,
+               UI_ID ,
+               UI_GRADE ,
+               CREDAT,
+               CRETIM,
+               LMODAT,
+               LMOTIM
+        FROM USER_INFO
+	</select>
+	<select id="selectUser" resultType="com.board2.dto.UserDTO">
+		SELECT UI_NUM ,
+               UI_NAME ,
+               UI_ID ,
+               UI_GRADE ,
+               CREDAT,
+               CRETIM,
+               LMODAT,
+               LMOTIM
+        FROM USER_INFO
+        WHERE UI_NUM=#{uiNum}
+	</select>
+	<select id="selectUserByIdAndPwd" resultType="com.board2.dto.UserDTO">
+		SELECT UI_NUM ,
+               UI_NAME ,
+               UI_ID ,
+               UI_GRADE ,
+               CREDAT,
+               CRETIM,
+               LMODAT,
+               LMOTIM
+        FROM USER_INFO
+        WHERE UI_ID=#{uiId}
+        AND UI_PWD=#{uiPwd}
+	</select>
+	<select id="selectCntById" resultType="int">
+		select COUNT(UI_ID) from USER_INFO where UI_ID=#{uiId}
+	</select>
+	
+	
+    <insert id="insertUser" >
+        INSERT INTO USER_INFO(UI_NAME, UI_ID, UI_PWD, UI_GRADE)
+        VALUES (#{uiName}, #{uiId}, #{uiPwd}, #{uiGrade})
+    </insert>
+    <update id="updateUser">
+        UPDATE USER_INFO
+        SET UI_NAME = #{uiName},
+        <if test='uiPwd != null and uiPwd != ""'>
+            UI_PWD = #{uiPwd},
+        </if>
+            UI_GRADE = #{uiGrade},
+            LMODAT = DATE_FORMAT(NOW(),'%Y%m%d'),
+            LMOTIM = DATE_FORMAT(NOW(),'%H%i%s')
+        WHERE UI_NUM = #{uiNum}
+    </update>
+    
+    <delete id="deleteUser" >
+        DELETE FROM USER_INFO
+        WHERE UI_NUM = #{uiNum}
+    </delete>
+	
+</mapper>
