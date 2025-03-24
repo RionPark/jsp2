@@ -11,7 +11,7 @@
 <body>
 <div class="container">
 	<h3>회원 전용 게시판</h3>
-	<table class="table table-bordered w-75">
+	<table class="table table-bordered table-hover w-75">
 		<tr>
 			<th>번호</th>
 			<th>제목</th> 
@@ -19,7 +19,7 @@
 			<th>작성일</th>
 		</tr>
 		<c:forEach items="${boards}" var="board">
-		<tr>
+		<tr style="cursor:pointer" onclick="location.href='/board/board-view?biNum=${board.biNum}'"> 
 			<td>${board.biNum}</td>
 			<td>${board.biTitle}</td>
 			<td>${board.uiName}</td>

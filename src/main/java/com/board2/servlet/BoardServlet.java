@@ -61,13 +61,27 @@ public class BoardServlet extends HttpServlet {
 		String msg = "";
 		String url = "";
 		if("insert".equals(cmd)) {
-			int result = boardService.addBoard(board);
 			msg = "게시물등록이 실패하였습니다.";
 			url = "/board/board-insert";
-			if(result==1) {
+			if(boardService.addBoard(board)==1) {
 				msg = "게시물이 등록되었습니다.";
 				url = "/board/board-list";
 			}
+		}else if("update".equals(cmd)) {
+			msg = "게시물 수정 실패하였습니다.";
+			url = "/board/board-update?biNum=" + board.getBiNum();
+			if(boardService.modifyBoard(board)==1) {
+				msg = "게시물이 수정 되었습니다.";
+				url = "/board/board-list";
+			}
+			
+		}else if("delete".equals(cmd)) {
+			msg = "이미 삭제된 게시물입니다.";
+			url = "/board/board-list";
+			if(boardService.removeBoard(board)==1) {
+				msg = "게시물이 삭제되었습니다.";
+			}
+			
 		}
 		CommonView.forwardMsg(request, response, msg, url);
 	}
