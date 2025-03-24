@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="BoardMapper">
+	<select id="selectBoards" resultType="com.board2.dto.BoardDTO">
+		select BI.BI_NUM,
+		BI.BI_TITLE, BI.BI_CONTENT, BI.UI_NUM,
+		UI.UI_NAME, BI.CREDAT, BI.CRETIM, BI.LMODAT, BI.LMOTIM
+		from BOARD_INFO BI
+		inner join USER_INFO UI
+		on BI.UI_NUM = UI.UI_NUM
+		ORDER BY BI.BI_NUM DESC
+	</select>
+	<select id="selectBoard" resultType="com.board2.dto.BoardDTO">
+		select BI.BI_NUM,
+		BI.BI_TITLE, BI.BI_CONTENT, BI.UI_NUM,
+		UI.UI_NAME, BI.CREDAT, BI.CRETIM, BI.LMODAT, BI.LMOTIM
+		from BOARD_INFO BI
+		inner join USER_INFO UI
+		on BI.UI_NUM = UI.UI_NUM
+		WHERE BI.BI_NUM = #{biNum}
+	</select>
+	<insert id="insertBoard">
+		INSERT INTO BOARD_INFO(BI_TITLE, BI_CONTENT, UI_NUM)
+		VALUES(#{biTitle}, #{biContent}, #{uiNum})
+	</insert>
+	<update id="updateBoard">
+		UPDATE BOARD_INFO
+		SET BI_TITLE = #{biTitle},
+		BI_CONTENT = #{biContent},
+        LMODAT = DATE_FORMAT(NOW(),'%Y%m%d'),
+        LMOTIM = DATE_FORMAT(NOW(),'%H%i%s')
+        WHERE BI_NUM = #{biNum}
+	</update>
+	<delete id="deleteBoard">
+		DELETE FROM BOARD_INFO WHERE BI_NUM = #{biNum}
+	</delete>
+</mapper>

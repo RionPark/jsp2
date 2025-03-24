@@ -17,6 +17,7 @@
 <c:if test="${!empty user}">
 	<b>${user.uiName}</b>님 반갑습니다.<br>
 	<a href="/user/view">My Page</a>
+	<a href="/board/board-list">게시판</a>
 	<form method="POST" action="/user/logout">
 		<button>로그아웃</button>
 		<button type="button">회원탈퇴</button>
